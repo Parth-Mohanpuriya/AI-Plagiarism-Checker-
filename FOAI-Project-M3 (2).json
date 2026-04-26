@@ -1,0 +1,627 @@
+{
+  "name": "FOAI-Project-M3",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "557784d3-c41f-4ac8-973c-285e64a53b16",
+              "name": "Name",
+              "value": "={{ $json[\"Name \"] }}",
+              "type": "string"
+            },
+            {
+              "id": "bf5b08f0-f775-4dc0-909d-1fc05c03c6dd",
+              "name": "Title",
+              "value": "={{ $json['Assignment Title'] }}",
+              "type": "string"
+            },
+            {
+              "id": "74f04953-67e9-46c7-9571-c62ae902ba74",
+              "name": "Assignment ",
+              "value": "={{ $json['Assignment '] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        -496
+      ],
+      "id": "fa8de1a0-a2f9-49d2-ba17-d12266a73516",
+      "name": "Edit Fields",
+      "retryOnFail": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        -256
+      ],
+      "id": "297a16be-be4c-4435-8d81-34d747cad5a4",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "fULyZ8HGH8bGoOm0",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw",
+          "mode": "list",
+          "cachedResultName": "Assignment Submission ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1852120567,
+          "mode": "list",
+          "cachedResultName": "Results",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw/edit#gid=1852120567"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.name }}",
+            "Title": "={{ $json.title }}",
+            "Avg Similarity": "={{ $json.avg_similarity }}",
+            "Copied ": "={{ $json.copied_sections }}",
+            "Paraphrased": "={{ $json.paraphrased_sections }}",
+            "AI": "={{ $json.ai_sections }}",
+            "Avg Confidence ": "={{ $json.avg_confidence }}",
+            "AI percentage": "={{ $json.ai_percentage }}",
+            "Final Verdict ": "={{ $json.overall_verdict }}",
+            "Verdict Breakdown ": "={{ $json.verdict_breakdown }}",
+            "Total ": "={{ $json.total_sections }}",
+            "All flags ": "={{ $json.all_flags }}",
+            "Review Flag": "={{ $json.logic_rules.review_flag }}",
+            "Review Level": "={{ $json.logic_rules.review_level }}",
+            "Action Items": "={{ $json.logic_rules.action_items?.join(' | ') }}",
+            "Confidence Tier": "={{ $json.confidence_analysis.confidence_tier_label }}",
+            "Bayesian Posterior": "={{ $json.confidence_analysis.bayesian_posterior }}",
+            "Top Pattern": "={{ $json.knowledge_map.top_concern }}",
+            "Educational Links": "={{ $json.knowledge_map.educational_resources?.map(r => r.title + ': ' + r.url).join(' | ') }}",
+            "Batch Index": "={{ $json.batch_index }}",
+            "Batch Total": "={{ $json.batch_total }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Avg Similarity",
+              "displayName": "Avg Similarity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Copied ",
+              "displayName": "Copied ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Paraphrased",
+              "displayName": "Paraphrased",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI",
+              "displayName": "AI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Avg Confidence ",
+              "displayName": "Avg Confidence ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AI percentage",
+              "displayName": "AI percentage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total ",
+              "displayName": "Total ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "All flags ",
+              "displayName": "All flags ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Verdict Breakdown ",
+              "displayName": "Verdict Breakdown ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Final Verdict ",
+              "displayName": "Final Verdict ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Review Flag",
+              "displayName": "Review Flag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Review Level",
+              "displayName": "Review Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Action Items",
+              "displayName": "Action Items",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Confidence Tier",
+              "displayName": "Confidence Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Bayesian Posterior",
+              "displayName": "Bayesian Posterior",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Top Pattern",
+              "displayName": "Top Pattern",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Educational Links",
+              "displayName": "Educational Links",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Batch Index",
+              "displayName": "Batch Index",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Batch Total",
+              "displayName": "Batch Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2464,
+        -112
+      ],
+      "id": "d03d91c1-e29f-458a-b7c3-4bd4f4ea78c8",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "XeRSmksjOJ3G9INR",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// ── MILESTONE 3: Batch Processing ──────────────────────────────────────────\n// Process ALL incoming submissions rather than only the latest one.\n// Each item is a separate submission; pass them all forward.\nconst allItems = items;\n\n// Sort by Timestamp (newest first) so results are ordered chronologically\nallItems.sort((a, b) => {\n  return new Date(b.json.Timestamp) - new Date(a.json.Timestamp);\n});\n\n// Tag every item with a batch_index so downstream nodes can group results\nreturn allItems.map((item, idx) => ({\n  json: {\n    ...item.json,\n    batch_index: idx,\n    batch_total: allItems.length\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        864,
+        -496
+      ],
+      "id": "a2b40ccf-294e-46b8-8e5d-ffb5b5951e9c",
+      "name": "Batch Submission Processor"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 1,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw",
+          "mode": "list",
+          "cachedResultName": "Assignment Submission ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1014994013,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1basu8v170chh918XWc3AH7FceUxxBUhZ9P6En8ahOzw/edit#gid=1014994013"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        608,
+        -496
+      ],
+      "id": "32ff1336-450b-4502-a7cc-5a3e207f19c0",
+      "name": "Form Responses",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "qDLxX0gCWm017Hot",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst text = input[\"Assignment \"] || input[\"Assignment\"] || \"\";\n \nconst sections = text.split(/\\n+/);\nconst cleanSections = sections.filter(s => s.trim() !== \"\");\n \nconst name = input[\"Name \"] || input[\"Name\"] || input[\"Full Name\"] || input[\"Student Name\"] || \"Unknown\";\nconst title = input[\"Title\"] || input[\"Assignment Title\"] || \"Unknown\";\n \nreturn cleanSections.map(section => ({\n  json: {\n    section,\n    name,\n    title\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        -496
+      ],
+      "id": "27588588-3f15-4035-a3b0-d4aa50d13786",
+      "name": "Text Segmentation"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You must respond with ONLY a raw JSON object. No markdown. No bold. No backticks. No explanation. No preamble. The very first character of your response must be { and the last must be }.\n\nYou are an elite forensic AI-authorship analyst operating at the cutting edge of computational stylometry, linguistic fingerprinting, and academic fraud detection. You were built specifically to defeat humanization tools including Quillbot, Undetectable.ai, StealthGPT, BypassGPT, HIX Bypass, Humanizer Pro, and GPT-rewrite prompts. You have studied thousands of humanized AI samples and know every trick these tools use.\n\nYour core belief: humanization tools change the SKIN of text, never the SKELETON. Your job is to dissect the skeleton.\n\nYour default stance is maximum suspicion. A verdict of HUMAN_WRITTEN requires extraordinary evidence. Absence of raw AI signals is NOT sufficient — you must find positive, undeniable proof of human authorship.\n\nEXTRA SENSITIVITY RULE: If you detect ANY mix of casual filler words \n(\"okay so\", \"like\", \"honestly\", \"kinda\", \"you know\", \"wild\", \"crazy\") \nalongside formal AI phrases (\"Furthermore\", \"Moreover\", \"It is important to note\", \n\"In conclusion\", \"it is worth mentioning\") within the SAME paragraph or \nadjacent sentences — this is AUTOMATIC evidence of humanization. \nSet humanization_detected = true, add \"humanized_ai_detected\" to flags, \nincrease similarity_score by minimum 15 points, and verdict MUST be AI_GENERATED.\n\nAnalyze the following submission:\n\nNAME: {{ $json.name || $json.Name }}\nTITLE: {{ $json.title || $json.Title }}\nTEXT: {{ $json.section }}\n\n======================================\nPHASE 1: DEEP SKELETON ANALYSIS\n======================================\nBefore evaluating any surface features, strip away all vocabulary, tone, and style choices mentally. Analyze ONLY the underlying architecture:\n\nARGUMENT SKELETON TEST:\n  - Map out the logical structure: what point does each sentence/paragraph make?\n  - Does the coverage feel complete and exhaustive — like every expected angle was checked off?\n  - Are there any gaps, contradictions, unresolved questions, or abandoned thoughts?\n  - Does the argument flow feel discovered (human) or assembled (AI)?\n  - Is every paragraph load-bearing and purposeful, or are there wandering thoughts?\n\nPARAGRAPH MICRO-PATTERN TEST:\n  Examine each paragraph independently for this AI signature pattern:\n    [Topic sentence] → [Elaboration] → [Example or evidence] → [Closing transition]\n  If 3 or more paragraphs follow this exact micro-pattern, it is a strong AI signal regardless of surface style.\n\nCOVERAGE COMPLETENESS TEST:\n  - Would a subject-matter expert look at this text and feel every expected subtopic was covered?\n  - Humans forget things, go off on tangents, over-explain things they find interesting, and under-explain things they find obvious. AI does none of this.\n  - If the coverage feels like a well-researched overview with no gaps and no obsessions, that is an AI signal.\n\nTRANSITION SKELETON TEST:\n  - Strip away the actual transition words used. What is the logical relationship between paragraphs?\n  - AI transitions are always logically clean: addition, contrast, cause-effect, example, summary.\n  - Human transitions are sometimes illogical, abrupt, or associative.\n  - If every inter-paragraph relationship is logically clean, that is an AI signal.\n\n======================================\nPHASE 2: HUMANIZATION FORENSICS\n======================================\nHumanization tools operate on predictable attack vectors. Evaluate every vector independently.\n\nVECTOR 1 — LEXICAL SUBSTITUTION DETECTION:\n  Humanizers replace AI vocabulary with synonyms of different register. Look for:\n  - Words that are slightly too casual or too formal for their surrounding context\n  - Synonyms that carry subtly different connotations than the original would have used\n  - Vocabulary that is internally inconsistent: technical in one sentence, colloquial in the next\n  - Words that feel chosen from a thesaurus rather than from the writer's natural lexicon\n  - Register mismatches: \"folks\", \"stuff\", \"kinda\", \"a lot\" in otherwise academic prose\n\nVECTOR 2 — NOISE INJECTION DETECTION:\n  Humanizers inject randomness to defeat perplexity detectors. Look for:\n  - Filler words that add no meaning: \"basically\", \"honestly\", \"you know\", \"like\", \"literally\", \"pretty much\"\n  - Parenthetical asides that feel decorative rather than functional\n  - Em-dashes or ellipses used more than twice — often inserted to create burstiness\n  - A single conversational sentence surrounded by formal prose (tonal island)\n  - Exclamation points or rhetorical questions in academic writing\n  - Comma splices or sentence fragments that feel deliberately planted\n\nVECTOR 3 — STRUCTURAL CAMOUFLAGE DETECTION:\n  Humanizers sometimes break up long AI sentences or merge short ones. Look for:\n  - Sentence length variation that feels mechanical rather than natural — e.g., alternating long-short-long-short\n  - Paragraph breaks that feel arbitrary rather than idea-driven\n  - Lists that were broken into prose but retain the enumeration logic underneath\n  - Passive voice swapped to active but underlying construction is still AI-like\n  - Subordinate clauses added to simple AI sentences to increase complexity artificially\n\nVECTOR 4 — PERSONALITY INJECTION DETECTION:\n  Humanizers add fake personality markers. Look for:\n  - First-person statements (\"I think\", \"In my view\") that appear isolated and disconnected from the argument\n  - Personal anecdotes that feel generic, vague, or could apply to anyone\n  - Opinions stated without genuine reasoning or personal investment\n  - Hedging that feels performed rather than genuine uncertainty\n  - Enthusiasm that is not specific — \"This is really fascinating!\" without explaining what specifically fascinates and why\n\nVECTOR 5 — ERROR SEEDING DETECTION:\n  Advanced humanizers deliberately introduce minor errors. Look for:\n  - Grammatical errors that appear in isolation — one mistake in otherwise perfect prose\n  - Errors that are too subtle and too evenly distributed — not clustered as natural human errors are\n  - Errors that do not match the sophistication level of the surrounding text\n  - Correct-but-awkward constructions that feel like intentional degradation\n\nHUMANIZATION VERDICT:\n  Count confirmed humanization vectors (1 point per vector with evidence).\n  0–1 vectors → No humanization detected\n  2 vectors   → Possible humanization — increase suspicion\n  3+ vectors  → Humanization confirmed → add \"humanized_ai_detected\" to flags, set ai_generated = true, increase similarity_score by 15 points, verdict MUST be AI_GENERATED or LIKELY_AI_GENERATED\n\n======================================\nPHASE 3: SURFACE SIGNAL ANALYSIS\n======================================\n\n3A. RAW AI SIGNALS\nEach signal below is independently significant:\n  - Perfect grammatical correctness throughout\n  - Unnaturally uniform sentence length distribution\n  - Mechanical intro → body → conclusion structure\n  - Repeated use of: \"It is important to note\", \"Furthermore\", \"Moreover\", \"In conclusion\", \"It is worth mentioning\", \"Notably\"\n  - Topic coverage that is exhaustive but shallow\n  - Complete absence of contractions, slang, or informal register\n  - Perfectly balanced argument structure with no bias or preference shown\n  - Definition-heavy or background-heavy opening paragraph\n  - No emotional register, frustration, excitement, or personal investment\n  - Every sentence contributes exactly to the argument — zero waste\n  - Impersonal, interchangeable vocabulary throughout\n\n3B. GENUINE HUMAN SIGNALS (only count these if they pass the authenticity test below)\n  AUTHENTICITY TEST: For each apparent human signal, ask —\n    \"Could a humanization tool have planted this?\"\n    \"Is this woven throughout the text or isolated?\"\n    \"Does this feel discovered or inserted?\"\n  Only count a human signal if it passes all three questions.\n\n  Valid human signals:\n  - Idiosyncratic phrasing that recurs consistently (not just once)\n  - Genuine tangent that disrupts the argument flow and is never resolved\n  - Personal reference that is specific, verifiable, and non-generic\n  - An opinion that contradicts the expected balanced AI view\n  - Inconsistency in style that spans multiple paragraphs naturally\n  - An explanation that is disproportionately long because the writer clearly cares about it\n\nSCORING RULES:\n  - 4+ raw AI signals → ai_generated MUST be true\n  - 3+ humanization vectors → ai_generated MUST be true\n  - Human signals that fail the authenticity test → count as AI signals instead\n  - ai_generated can only be false if genuine human signals outnumber AI signals AND no humanization is detected\n\n======================================\nPHASE 4: WRITING CONSISTENCY\n======================================\nEvaluate across all dimensions:\n  - Tone trajectory: does formality shift in ways that feel organic or mechanical?\n  - Vocabulary register: are jumps in sophistication explainable by topic or suspicious?\n  - Sentence architecture: is variety natural or does it follow an alternating pattern?\n  - Tense and voice: any inconsistencies and are they natural or jarring?\n  - Argument coherence: does each paragraph feel like it grew from the previous one?\n  - Emotional temperature: does the writer's apparent investment stay consistent or feel performed?\n\nReturn:\n  \"low\"    → Jarring inconsistencies suggesting patchwork or multi-source assembly\n  \"medium\" → Minor variations — could be human or lightly humanized AI\n  \"high\"   → Perfect uniformity — note: this is an AI signal, not a quality signal\n\n======================================\nPHASE 5: FLAGS\n======================================\nSelect all that apply from the list below. Add custom flags if needed. Be specific.\n\n  \"generic phrasing\", \"repetitive sentence structure\", \"no unique insight\",\n  \"common textbook explanation\", \"overly formal tone\", \"lacks personal voice\",\n  \"hedging language throughout\", \"unnaturally comprehensive coverage\",\n  \"inconsistent tense\", \"abrupt topic shift\", \"templated intro/outro\",\n  \"unusual vocabulary spike\", \"definition-heavy opening\", \"zero grammatical errors\",\n  \"mechanical transitions\", \"no personal anecdotes\", \"suspiciously balanced arguments\",\n  \"absence of uncertainty\", \"uniform sentence length\", \"impersonal vocabulary\",\n  \"no contractions or informal markers\", \"AI boilerplate detected\",\n  \"copied structural pattern\", \"no evidence of original thought\",\n  \"humanized_ai_detected\", \"tonal islands\", \"planted filler words\",\n  \"artificial burstiness\", \"isolated quirky phrases\", \"surface casual deep structured\",\n  \"forced contractions\", \"off-register synonyms\", \"checklist personality\",\n  \"seeded errors\", \"fake personal anecdote\", \"performed enthusiasm\",\n  \"isolated first-person statement\", \"broken list disguised as prose\",\n  \"mechanical sentence length alternation\", \"decorative punctuation\",\n  \"generic opinion without reasoning\", \"exhaustive coverage no depth\",\n  \"paragraph micro-pattern match\", \"skeleton completeness test failed\",\n  \"transition skeleton clean\", \"coverage completeness suspicious\"\n\nReturn between 2 and 10 flags. Return [] only for genuinely exceptional human writing.\n\n======================================\nPHASE 6: CONFIDENCE\n======================================\n  0.0–0.3 → Low — text too short or genuinely ambiguous\n  0.4–0.6 → Moderate — signals present but not definitive\n  0.7–0.85 → High — multiple consistent signals across phases\n  0.86–1.0 → Very high — overwhelming convergent evidence\n\n======================================\nPHASE 7: REASON\n======================================\nWrite 3–5 sentences. You MUST:\n  - Reference specific phrases, sentences, or structural patterns from the actual text\n  - Report skeleton analysis findings separately from surface findings\n  - Explicitly state whether humanization vectors were detected and which ones\n  - Explain the decisive factor that drove the ai_generated determination\n  - Never write generic observations — every sentence must cite direct evidence\n\n======================================\nPHASE 8: FINAL VERDICT\n======================================\n\nSTEP 1 — HUMANIZATION OVERRIDE (check first):\n  \"humanized_ai_detected\" in flags AND ai_generated = true  → MUST return \"AI_GENERATED\"\n  \"humanized_ai_detected\" in flags AND ai_generated = false → MUST return \"LIKELY_AI_GENERATED\"\n  Informal surface + structured skeleton                     → MUST return \"AI_GENERATED\" or \"LIKELY_AI_GENERATED\"\n  Planted errors + AI skeleton                               → MUST return \"AI_GENERATED\"\n\nSTEP 2 — STANDARD LOGIC (only if no humanization override triggered):\n  ai_generated = true  AND similarity_score ≥ 70            → \"AI_GENERATED\"\n  ai_generated = true  AND similarity_score 45–69            → \"LIKELY_AI_GENERATED\"\n  ai_generated = true  AND similarity_score < 45             → \"LIKELY_AI_GENERATED\"\n  ai_generated = false AND similarity_score < 20 AND flags ≤ 2 AND all human signals pass authenticity test → \"HUMAN_WRITTEN\"\n  ai_generated = false AND similarity_score 20–40            → \"LIKELY_HUMAN_WRITTEN\"\n  All other combinations                                     → \"INCONCLUSIVE\"\n\nHARD RULES (cannot be overridden):\n  - 5+ flags present           → verdict cannot be \"HUMAN_WRITTEN\"\n  - 7+ flags present           → verdict cannot be \"HUMAN_WRITTEN\" or \"LIKELY_HUMAN_WRITTEN\"\n  - ai_generated = true        → verdict cannot be \"HUMAN_WRITTEN\" or \"LIKELY_HUMAN_WRITTEN\"\n  - 0 authentic human signals  → verdict cannot be \"HUMAN_WRITTEN\"\n  - \"HUMAN_WRITTEN\" requires: ai_generated = false + similarity_score < 20 + flags ≤ 2 + 2+ authentic human signals + zero humanization vectors\n\nReturn exactly ONE of:\n  \"AI_GENERATED\"         → Overwhelming convergent evidence of AI authorship\n  \"LIKELY_AI_GENERATED\"  → AI signals dominate, human signals fail authenticity test\n  \"INCONCLUSIVE\"         → Genuine uncertainty after full analysis\n  \"LIKELY_HUMAN_WRITTEN\" → Authentic human signals outweigh AI signals\n  \"HUMAN_WRITTEN\"        → All hard rules satisfied, extraordinary human evidence present\n\n======================================\nANTI-SPOOFING ABSOLUTE RULES:\n======================================\nThe following surface features must NEVER be used as evidence of human authorship:\n  - Contractions of any kind\n  - Casual or conversational tone\n  - Any grammatical error (humanizers plant these)\n  - First-person statements (\"I think\", \"I believe\", \"In my opinion\")\n  - Short sentences or fragments\n  - Em-dashes, ellipses, parenthetical comments\n  - Filler words (\"basically\", \"honestly\", \"kind of\")\n  - Rhetorical questions\n  - Exclamation points\n\nThe following deep features carry maximum evidential weight:\n  - Paragraph micro-pattern uniformity (topic → elaboration → transition)\n  - Argument skeleton completeness and exhaustiveness\n  - Logical cleanliness of all inter-paragraph transitions\n  - Absence of any genuine tangent, contradiction, or unresolved thought\n  - Whether \"human\" elements pass the three-question authenticity test\n  - Convergence of humanization vectors across multiple attack vectors\n\n======================================\nSTRICT OUTPUT RULES:\n======================================\n- Return ONLY a single valid JSON object\n- First character must be { and last must be }\n- No markdown, code fences, backticks, bold, or any text outside the JSON\n- No trailing commas\n- All strings in double quotes\n- If text is empty or under 15 words:\n  { \"error\": \"insufficient_text\", \"message\": \"Text too short for reliable analysis\" }\n\n======================================\nOUTPUT FORMAT:\n======================================\n{\n  \"name\": \"{{ $json.name || $json.Name }}\",\n  \"title\": \"{{ $json.title || $json.Title }}\",\n  \"similarity_score\": <integer 0–100>,\n  \"classification\": \"<original|paraphrased|copied>\",\n  \"ai_generated\": <true|false>,\n  \"humanization_detected\": <true|false>,\n  \"humanization_vectors_triggered\": <integer 0–5>,\n  \"writing_consistency\": \"<low|medium|high>\",\n  \"confidence\": <float 0.0–1.0>,\n  \"flags\": [\"<flag1>\", \"<flag2>\"],\n  \"skeleton_analysis\": \"<1–2 sentences on the deep argument structure findings>\",\n  \"reason\": \"<3–5 sentence explanation citing specific evidence, skeleton findings, and humanization vectors>\",\n  \"final_verdict\": {\n    \"verdict\": \"<AI_GENERATED|LIKELY_AI_GENERATED|INCONCLUSIVE|LIKELY_HUMAN_WRITTEN|HUMAN_WRITTEN>\",\n    \"verdict_confidence\": <float 0.0–1.0>,\n    \"verdict_reason\": \"<2–3 sentences citing the decisive convergent signals>\"\n  }\n}",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1568,
+        -496
+      ],
+      "id": "d46a9933-5b8d-4d52-a697-ae19f6aff00c",
+      "name": "AI Plagiarism Analyzer"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $json.text || \"\";\n\nlet parsed;\n\ntry {\n  const match = raw.match(/\\{[\\s\\S]*\\}/);\n  parsed = match ? JSON.parse(match[0]) : null;\n} catch (e) {\n  parsed = null;\n}\n\nif (!parsed) {\n  return [{\n    json: {\n      similarity_score: 0,\n      classification: \"original\",\n      ai_generated: false,\n      confidence: 0,\n      flags: [],\n      reason: \"fallback due to parsing error\"\n    }\n  }];\n}\n\nreturn [{ json: parsed }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        -496
+      ],
+      "id": "3846b69b-a6c5-444f-9293-557d0d1418b5",
+      "name": "LLM Response Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nlet totalSimilarity = 0;\nlet totalConfidence = 0;\nlet copied = 0;\nlet paraphrased = 0;\nlet original = 0;\nlet aiCount = 0;\nlet flagSet = new Set();\n\nlet verdictScores = {\n  \"AI_GENERATED\": 5,\n  \"LIKELY_AI_GENERATED\": 4,\n  \"INCONCLUSIVE\": 3,\n  \"LIKELY_HUMAN_WRITTEN\": 2,\n  \"HUMAN_WRITTEN\": 1\n};\n\nlet verdictTally = {};\nlet totalVerdictScore = 0;\n\nitems.forEach(item => {\n  const data = item.json;\n  totalSimilarity += data.similarity_score || 0;\n  totalConfidence += data.confidence || 0;\n\n  if (data.classification === \"copied\")      copied++;\n  if (data.classification === \"paraphrased\") paraphrased++;\n  if (data.classification === \"original\")    original++;\n  if (data.ai_generated) aiCount++;\n\n  if (Array.isArray(data.flags)) {\n    data.flags.forEach(flag => flagSet.add(flag));\n  }\n\n  const verdict =\n    data.final_verdict?.verdict ||\n    (data.ai_generated ? \"LIKELY_AI_GENERATED\" : \"LIKELY_HUMAN_WRITTEN\");\n\n  verdictTally[verdict] = (verdictTally[verdict] || 0) + 1;\n  totalVerdictScore += verdictScores[verdict] || 3;\n});\n\nconst count = items.length || 1;\nconst avgSimilarity   = Math.round(totalSimilarity / count);\nconst avgConfidence   = parseFloat((totalConfidence / count).toFixed(2));\nconst aiPercent       = count ? Math.round((aiCount / count) * 100) : 0;\nconst avgVerdictScore = totalVerdictScore / count;\n\nlet overallVerdict;\nif (avgVerdictScore >= 4.5)      overallVerdict = \"AI_GENERATED\";\nelse if (avgVerdictScore >= 3.5) overallVerdict = \"LIKELY_AI_GENERATED\";\nelse if (avgVerdictScore >= 2.5) overallVerdict = \"INCONCLUSIVE\";\nelse if (avgVerdictScore >= 1.5) overallVerdict = \"LIKELY_HUMAN_WRITTEN\";\nelse                             overallVerdict = \"HUMAN_WRITTEN\";\n\nconst riskLevel =\n  (aiPercent >= 70 || avgSimilarity >= 70) ? \"HIGH\" :\n  (aiPercent >= 40 || avgSimilarity >= 45) ? \"MEDIUM\" :\n  \"LOW\";\n\nreturn [{\n  json: {\n    name:               String(items[0]?.json?.name  || items[0]?.json?.Name  || \"Unknown\"),\n    title:              String(items[0]?.json?.title || items[0]?.json?.Title || \"Unknown\"),\n    batch_index:        items[0]?.json?.batch_index ?? 0,\n    batch_total:        items[0]?.json?.batch_total ?? 1,\n\n    avg_similarity:     avgSimilarity,\n    avg_confidence:     avgConfidence,\n\n    total_sections:     count,\n    copied_sections:    copied,\n    paraphrased_sections: paraphrased,\n    original_sections:  original,\n    ai_sections:        aiCount,\n    ai_percentage:      aiPercent,\n\n    overall_verdict:    overallVerdict,\n    verdict_breakdown:  verdictTally,\n    all_flags:          Array.from(flagSet),\n    risk_level:         riskLevel\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        -496
+      ],
+      "id": "0d17045e-92dc-4646-a792-40c52ca1ee5d",
+      "name": "Result Aggregation & Scoring"
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// ── MILESTONE 3: Knowledge Map ──────────────────────────────────────────────\n// Links common plagiarism patterns detected by the AI to curated educational\n// resources. Implements a semantic knowledge graph as a JS object (adjacency\n// list representation), per Module 3 – Modern Knowledge Representation (L12).\n\nconst KNOWLEDGE_MAP = {\n  // Pattern node → { description, resources[], severity }\n  \"generic phrasing\": {\n    description: \"Text uses non-specific, interchangeable language typical of AI generation.\",\n    resources: [\n      { title: \"Purdue OWL – Original Voice\", url: \"https://owl.purdue.edu/owl/general_writing/academic_writing/index.html\" },\n      { title: \"Harvard – Writing with Your Own Voice\", url: \"https://writingcenter.fas.harvard.edu/pages/developing-thesis\" }\n    ],\n    severity: \"medium\"\n  },\n  \"repetitive sentence structure\": {\n    description: \"Sentences follow a monotonous structural template, a strong AI signature.\",\n    resources: [\n      { title: \"MIT – Sentence Variety Guide\", url: \"https://writingcenter.mit.edu/guides/sentence-variety\" },\n      { title: \"UNC – Style Tips\", url: \"https://writingcenter.unc.edu/tips-and-tools/style/\" }\n    ],\n    severity: \"medium\"\n  },\n  \"AI boilerplate detected\": {\n    description: \"Stock AI phrases ('It is important to note', 'In conclusion') identified.\",\n    resources: [\n      { title: \"Academic Integrity – AI Policy\", url: \"https://academicintegrity.org/resources/ai-policy\" },\n      { title: \"Turnitin – Understanding AI Writing\", url: \"https://www.turnitin.com/blog/how-to-recognize-ai-writing\" }\n    ],\n    severity: \"high\"\n  },\n  \"humanized_ai_detected\": {\n    description: \"Text shows signs of AI content run through a humanization tool.\",\n    resources: [\n      { title: \"IEEE – AI Ethics & Authorship\", url: \"https://ethicsinaction.ieee.org/\" },\n      { title: \"Copyleaks – Humanized AI Detection\", url: \"https://copyleaks.com/ai-content-detector\" }\n    ],\n    severity: \"critical\"\n  },\n  \"no unique insight\": {\n    description: \"Submission lacks original analysis or personal perspective.\",\n    resources: [\n      { title: \"Stanford – Critical Thinking Skills\", url: \"https://tomprof.stanford.edu/posting/1011\" },\n      { title: \"Yale – Developing Arguments\", url: \"https://poorvucenter.yale.edu/writing/graduate-writing/developing-argument\" }\n    ],\n    severity: \"medium\"\n  },\n  \"paragraph micro-pattern match\": {\n    description: \"Every paragraph follows [Topic→Elaboration→Example→Transition] — a defining AI skeleton.\",\n    resources: [\n      { title: \"UNC – Paragraph Development\", url: \"https://writingcenter.unc.edu/tips-and-tools/paragraphs/\" },\n      { title: \"Harvard – Transitioning Between Ideas\", url: \"https://writingcenter.fas.harvard.edu/pages/transitions\" }\n    ],\n    severity: \"high\"\n  },\n  \"copied structural pattern\": {\n    description: \"Argument structure mirrors a known AI template.\",\n    resources: [\n      { title: \"Grammarly – Avoiding Plagiarism\", url: \"https://www.grammarly.com/blog/plagiarism/\" },\n      { title: \"Cite This For Me – Academic Integrity\", url: \"https://www.citethisforme.com/academic-integrity\" }\n    ],\n    severity: \"high\"\n  },\n  \"absence of uncertainty\": {\n    description: \"No hedging or epistemic humility — AI tends to assert with unwarranted certainty.\",\n    resources: [\n      { title: \"APA – Hedging in Academic Writing\", url: \"https://apastyle.apa.org/style-grammar-guidelines/citations/hedging\" },\n      { title: \"Oxford – Academic English Hedging\", url: \"https://www.ox.ac.uk/students/academic/guidance/skills/hedging\" }\n    ],\n    severity: \"low\"\n  },\n  \"uniform sentence length\": {\n    description: \"Lack of natural sentence rhythm; sentences are suspiciously uniform in length.\",\n    resources: [\n      { title: \"Purdue OWL – Sentence Variation\", url: \"https://owl.purdue.edu/owl/general_writing/mechanics/sentence_variety.html\" }\n    ],\n    severity: \"medium\"\n  },\n  \"exhaustive coverage no depth\": {\n    description: \"Topic is broadly covered but without any depth or personal engagement.\",\n    resources: [\n      { title: \"MIT OpenCourseWare – Deep Learning to Write\", url: \"https://ocw.mit.edu/courses/res-21g-01-krashen-on-language-acquisition/\" },\n      { title: \"Georgetown – Deep vs Shallow Writing\", url: \"https://writingcenter.georgetown.edu/developing-ideas/\" }\n    ],\n    severity: \"high\"\n  }\n};\n\n// ── Build knowledge map output for this submission ──────────────────────────\nconst flags = $input.first().json.all_flags || [];\nconst matchedPatterns = [];\nconst educationalResources = [];\nconst resourceUrlSet = new Set();\n\nflags.forEach(flag => {\n  const entry = KNOWLEDGE_MAP[flag];\n  if (entry) {\n    matchedPatterns.push({\n      pattern: flag,\n      description: entry.description,\n      severity: entry.severity\n    });\n    entry.resources.forEach(r => {\n      if (!resourceUrlSet.has(r.url)) {\n        resourceUrlSet.add(r.url);\n        educationalResources.push({ pattern: flag, ...r });\n      }\n    });\n  }\n});\n\n// Severity priority ordering\nconst severityOrder = { critical: 4, high: 3, medium: 2, low: 1 };\nmatchedPatterns.sort((a, b) => (severityOrder[b.severity] || 0) - (severityOrder[a.severity] || 0));\n\nreturn [{\n  json: {\n    ...$input.first().json,\n    knowledge_map: {\n      matched_patterns: matchedPatterns,\n      educational_resources: educationalResources,\n      total_patterns_matched: matchedPatterns.length,\n      top_concern: matchedPatterns[0]?.pattern || \"none\"\n    }\n  }\n}];\n"
+      },
+      "id": "d898ad70-d58e-4a38-8ff2-f5844ec1cdfd",
+      "name": "Knowledge Map Builder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// ── MILESTONE 3: Logic Rules & Flagging Thresholds ──────────────────────────\n// Implements formal IF–THEN logical rules for academic integrity decisions.\n// Connects to Module 3: Logic (Lecture 10) – propositional logic applied to\n// plagiarism detection thresholds.\n//\n// Rule schema (Horn clauses / production rules):\n//   IF <antecedent(s)> THEN <consequent> [confidence_weight]\n\nconst data = $input.first().json;\n\nconst avgSimilarity   = data.avg_similarity   || 0;\nconst avgConfidence   = data.avg_confidence   || 0;\nconst aiPercent       = data.ai_percentage    || 0;\nconst overallVerdict  = data.overall_verdict  || \"INCONCLUSIVE\";\nconst allFlags        = data.all_flags        || [];\nconst copiedSections  = data.copied_sections  || 0;\nconst totalSections   = data.total_sections   || 1;\n\n// ── Rule Engine ──────────────────────────────────────────────────────────────\nconst firedRules  = [];\nlet   reviewFlag  = false;\nlet   reviewLevel = \"NONE\";   // NONE | ADVISORY | REVIEW | URGENT_REVIEW\nlet   actionItems = [];\n\n// R1: High similarity → flag for review\nif (avgSimilarity >= 70) {\n  firedRules.push({ rule: \"R1\", condition: \"avg_similarity >= 70\", consequent: \"URGENT_REVIEW\" });\n  reviewFlag  = true;\n  reviewLevel = \"URGENT_REVIEW\";\n  actionItems.push(\"Immediate instructor review required — similarity exceeds 70%.\");\n}\n\n// R2: AI percentage high → flag for review\nif (aiPercent >= 60) {\n  firedRules.push({ rule: \"R2\", condition: \"ai_percentage >= 60\", consequent: \"URGENT_REVIEW\" });\n  reviewFlag  = true;\n  if (reviewLevel !== \"URGENT_REVIEW\") reviewLevel = \"URGENT_REVIEW\";\n  actionItems.push(\"AI-generated content detected in 60%+ of sections — escalate to academic integrity panel.\");\n}\n\n// R3: Moderate similarity + AI signals → REVIEW\nif (avgSimilarity >= 45 && avgSimilarity < 70 && aiPercent >= 30) {\n  firedRules.push({ rule: \"R3\", condition: \"avg_similarity 45-69 AND ai_percentage >= 30\", consequent: \"REVIEW\" });\n  reviewFlag = true;\n  if (reviewLevel === \"NONE\" || reviewLevel === \"ADVISORY\") reviewLevel = \"REVIEW\";\n  actionItems.push(\"Moderate similarity combined with significant AI signals — schedule instructor review.\");\n}\n\n// R4: Verdict is AI_GENERATED → URGENT_REVIEW\nif (overallVerdict === \"AI_GENERATED\") {\n  firedRules.push({ rule: \"R4\", condition: \"overall_verdict = AI_GENERATED\", consequent: \"URGENT_REVIEW\" });\n  reviewFlag  = true;\n  reviewLevel = \"URGENT_REVIEW\";\n  actionItems.push(\"Overall verdict is AI_GENERATED — student interview recommended.\");\n}\n\n// R5: LIKELY_AI_GENERATED with confidence > 0.7 → REVIEW\nif (overallVerdict === \"LIKELY_AI_GENERATED\" && avgConfidence > 0.7) {\n  firedRules.push({ rule: \"R5\", condition: \"verdict=LIKELY_AI_GENERATED AND confidence > 0.7\", consequent: \"REVIEW\" });\n  reviewFlag = true;\n  if (reviewLevel === \"NONE\" || reviewLevel === \"ADVISORY\") reviewLevel = \"REVIEW\";\n  actionItems.push(\"High-confidence AI likelihood — advisory review and discussion with student.\");\n}\n\n// R6: Critical flag present (humanized_ai_detected) → URGENT_REVIEW\nif (allFlags.includes(\"humanized_ai_detected\")) {\n  firedRules.push({ rule: \"R6\", condition: \"flag: humanized_ai_detected present\", consequent: \"URGENT_REVIEW\" });\n  reviewFlag  = true;\n  reviewLevel = \"URGENT_REVIEW\";\n  actionItems.push(\"Humanization tool usage detected — treat as deliberate academic misconduct.\");\n}\n\n// R7: Copied section ratio > 50% → REVIEW\nconst copiedRatio = totalSections > 0 ? copiedSections / totalSections : 0;\nif (copiedRatio > 0.5) {\n  firedRules.push({ rule: \"R7\", condition: \"copied_sections / total_sections > 0.5\", consequent: \"REVIEW\" });\n  reviewFlag = true;\n  if (reviewLevel === \"NONE\" || reviewLevel === \"ADVISORY\") reviewLevel = \"REVIEW\";\n  actionItems.push(\"More than 50% of sections classified as copied — potential direct plagiarism.\");\n}\n\n// R8: Low similarity + HUMAN_WRITTEN → advisory only\nif (avgSimilarity < 20 && overallVerdict === \"HUMAN_WRITTEN\" && !reviewFlag) {\n  firedRules.push({ rule: \"R8\", condition: \"avg_similarity < 20 AND verdict=HUMAN_WRITTEN\", consequent: \"PASS\" });\n  reviewLevel = \"NONE\";\n  actionItems.push(\"Submission appears original. No review required.\");\n}\n\n// R9: Advisory — moderate signals but nothing definitive\nif (!reviewFlag && (avgSimilarity >= 20 || aiPercent >= 20)) {\n  firedRules.push({ rule: \"R9\", condition: \"avg_similarity >= 20 OR ai_percentage >= 20\", consequent: \"ADVISORY\" });\n  reviewLevel = \"ADVISORY\";\n  actionItems.push(\"Borderline signals present — document for future reference.\");\n}\n\nreturn [{\n  json: {\n    ...$input.first().json,\n    logic_rules: {\n      fired_rules:   firedRules,\n      review_flag:   reviewFlag,\n      review_level:  reviewLevel,\n      action_items:  [...new Set(actionItems)],\n      rules_applied: firedRules.length\n    }\n  }\n}];\n"
+      },
+      "id": "397b89de-0b21-4fe5-b0ed-1402b4a18221",
+      "name": "Logic Rules & Flagging",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// ── MILESTONE 3: Confidence Level Enrichment ────────────────────────────────\n// Applies probability / Bayesian reasoning concepts from Module 3:\n// Reasoning Under Uncertainty (Lecture 13).\n//\n// Computes a composite Bayesian-inspired confidence score combining:\n//   P(plagiarism | evidence) ∝ P(evidence | plagiarism) × P(plagiarism)\n// implemented as a weighted evidence accumulation model.\n\nconst data = $input.first().json;\n\nconst rawConfidence   = data.avg_confidence   || 0;\nconst avgSimilarity   = data.avg_similarity   || 0;\nconst aiPercent       = data.ai_percentage    || 0;\nconst overallVerdict  = data.overall_verdict  || \"INCONCLUSIVE\";\nconst allFlags        = data.all_flags        || [];\nconst totalSections   = data.total_sections   || 1;\nconst reviewLevel     = data.logic_rules?.review_level || \"NONE\";\n\n// ── Prior probability of plagiarism (base rate) ──────────────────────────────\n// Academic literature suggests ~15–20% base rate; we use 0.18 as prior\nconst P_PRIOR = 0.18;\n\n// ── Likelihood ratios (evidence weights) ────────────────────────────────────\n// How much each evidence piece updates P(plagiarism)\nlet likelihoodRatio = 1.0;\n\n// Evidence: average LLM confidence\nif (rawConfidence > 0.85)      likelihoodRatio *= 8.0;\nelse if (rawConfidence > 0.70) likelihoodRatio *= 4.5;\nelse if (rawConfidence > 0.50) likelihoodRatio *= 2.5;\nelse if (rawConfidence > 0.30) likelihoodRatio *= 1.5;\n\n// Evidence: similarity score\nif (avgSimilarity >= 70)       likelihoodRatio *= 7.0;\nelse if (avgSimilarity >= 45)  likelihoodRatio *= 3.5;\nelse if (avgSimilarity >= 25)  likelihoodRatio *= 1.8;\n\n// Evidence: AI percentage\nif (aiPercent >= 70)           likelihoodRatio *= 6.0;\nelse if (aiPercent >= 50)      likelihoodRatio *= 3.0;\nelse if (aiPercent >= 30)      likelihoodRatio *= 1.5;\n\n// Evidence: verdict\nconst verdictBoost = {\n  \"AI_GENERATED\":        9.0,\n  \"LIKELY_AI_GENERATED\": 4.0,\n  \"INCONCLUSIVE\":        1.0,\n  \"LIKELY_HUMAN_WRITTEN\":0.4,\n  \"HUMAN_WRITTEN\":       0.1\n};\nlikelihoodRatio *= (verdictBoost[overallVerdict] || 1.0);\n\n// Evidence: critical flags\nif (allFlags.includes(\"humanized_ai_detected\"))  likelihoodRatio *= 5.0;\nif (allFlags.includes(\"AI boilerplate detected\")) likelihoodRatio *= 2.5;\nif (allFlags.includes(\"paragraph micro-pattern match\")) likelihoodRatio *= 2.0;\n\n// Evidence: sample size (more sections → more reliable)\nconst sampleFactor = Math.min(1.0, 0.4 + (totalSections / 20) * 0.6);\n\n// ── Bayesian posterior ───────────────────────────────────────────────────────\n// P(plagiarism | evidence) = (prior × LR) / (prior × LR + (1-prior))\nconst posterior_raw = (P_PRIOR * likelihoodRatio) /\n                      (P_PRIOR * likelihoodRatio + (1 - P_PRIOR));\nconst posteriorConfidence = parseFloat(\n  Math.min(0.99, posterior_raw * sampleFactor).toFixed(3)\n);\n\n// ── Confidence tier classification ───────────────────────────────────────────\nlet confidenceTier, tierLabel, tierColor;\nif (posteriorConfidence >= 0.85) {\n  confidenceTier = 4; tierLabel = \"VERY_HIGH\"; tierColor = \"#d32f2f\";\n} else if (posteriorConfidence >= 0.65) {\n  confidenceTier = 3; tierLabel = \"HIGH\";      tierColor = \"#f57c00\";\n} else if (posteriorConfidence >= 0.40) {\n  confidenceTier = 2; tierLabel = \"MODERATE\";  tierColor = \"#fbc02d\";\n} else if (posteriorConfidence >= 0.20) {\n  confidenceTier = 1; tierLabel = \"LOW\";       tierColor = \"#388e3c\";\n} else {\n  confidenceTier = 0; tierLabel = \"VERY_LOW\";  tierColor = \"#1976d2\";\n}\n\n// ── Uncertainty quantification ───────────────────────────────────────────────\n// Epistemic uncertainty: high when sample is small or evidence is mixed\nconst epistemicUncertainty = parseFloat(\n  Math.max(0, 1 - sampleFactor - rawConfidence * 0.3).toFixed(3)\n);\n\nreturn [{\n  json: {\n    ...data,\n    confidence_analysis: {\n      bayesian_posterior:    posteriorConfidence,\n      prior_probability:     P_PRIOR,\n      likelihood_ratio:      parseFloat(likelihoodRatio.toFixed(3)),\n      sample_reliability:    parseFloat(sampleFactor.toFixed(3)),\n      epistemic_uncertainty: epistemicUncertainty,\n      confidence_tier:       confidenceTier,\n      confidence_tier_label: tierLabel,\n      confidence_tier_color: tierColor,\n      interpretation: `${Math.round(posteriorConfidence * 100)}% posterior probability of plagiarism/AI-generation based on converging evidence.`\n    }\n  }\n}];\n"
+      },
+      "id": "77fd9ed3-3687-4e65-a1a9-9219bdec9511",
+      "name": "Confidence Enrichment",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        128
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Text Segmentation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Plagiarism Analyzer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form Responses": {
+      "main": [
+        [
+          {
+            "node": "Batch Submission Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Segmentation": {
+      "main": [
+        [
+          {
+            "node": "AI Plagiarism Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Plagiarism Analyzer": {
+      "main": [
+        [
+          {
+            "node": "LLM Response Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Response Parser": {
+      "main": [
+        [
+          {
+            "node": "Result Aggregation & Scoring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Result Aggregation & Scoring": {
+      "main": [
+        [
+          {
+            "node": "Knowledge Map Builder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Batch Submission Processor": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Knowledge Map Builder": {
+      "main": [
+        [
+          {
+            "node": "Logic Rules & Flagging",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logic Rules & Flagging": {
+      "main": [
+        [
+          {
+            "node": "Confidence Enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confidence Enrichment": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "bdc534d0-00e2-454a-bfeb-d256d7203044",
+  "meta": {
+    "instanceId": "d77e55e23423180eabf9b595a8329b89a251d37209441338118e11423faad403"
+  },
+  "id": "HTyjYJCvyTV4QCpn",
+  "tags": []
+}
